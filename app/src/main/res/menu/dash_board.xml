@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/whitecolor_id"
+        android:orderInCategory="100"
+        android:title="White"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/graycolor_id"
+        android:orderInCategory="100"
+        android:title="Gray"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/signout_id"
+        android:orderInCategory="100"
+        android:title="Sign out"
+        app:showAsAction="never" />
+
+
+</menu>
