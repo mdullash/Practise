@@ -58,21 +58,6 @@ class GalleryFragment : Fragment() {
 
             })
 
-//            if(email.length()==0)
-//            {
-//                email_id.setError("Enter email address")
-//                email_id.requestFocus()
-//                return@OnClickListener
-//            }
-//
-//            if(!android.util.Patterns.EMAIL_ADDRESS.matcher(email.text.toString().trim()).matches())
-//            {
-//                email_id.setError("Enter an valid email address")
-//                email_id.requestFocus()
-//                return@OnClickListener
-//            }
-
-
 
             gvm.isvalidatePass(pass.text.toString().trim())
 
