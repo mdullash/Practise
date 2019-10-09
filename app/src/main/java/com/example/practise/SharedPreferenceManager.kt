@@ -6,18 +6,31 @@ import android.content.SharedPreferences
 
 class SharedPreferenceManager(context: Context)
 {
-    var pref : SharedPreferences = context.getSharedPreferences("login",Context.MODE_PRIVATE)
+    var pref : SharedPreferences = context.getSharedPreferences("com.example.practise",Context.MODE_PRIVATE)
 
-    fun setStatus (status : Boolean)
+    fun setLoginStatus (status : Boolean)
     {
         val editor = pref.edit()
         editor.putBoolean("stat",status)
         editor.apply()
     }
 
-    fun getStatus () : Boolean
+    fun getLoginStatus () : Boolean
     {
         val status = pref.getBoolean("stat",false)
+        return status
+    }
+
+    fun setEmail (emailStatus : String)
+    {
+        val editor = pref.edit()
+        editor.putString("email",emailStatus)
+        editor.apply()
+    }
+
+    fun getEmail () : String?
+    {
+        val status : String? = pref.getString("email","")
         return status
     }
 

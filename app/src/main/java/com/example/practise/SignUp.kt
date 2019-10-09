@@ -36,10 +36,10 @@ class SignUp : AppCompatActivity() {
 
         })
 
-        signinBtn.setOnClickListener(View.OnClickListener {
+        signinBtn.setOnClickListener {
 
             startActivity(Intent(this,MainActivity::class.java))
-        })
+        }
     }
 
     private fun userReg() {
@@ -47,19 +47,20 @@ class SignUp : AppCompatActivity() {
         var u_email : String = email.text.toString()
         var u_pass : String = pass.text.toString()
 
-        auth.createUserWithEmailAndPassword(u_email,u_pass).addOnCompleteListener(OnCompleteListener {
+        auth.createUserWithEmailAndPassword(u_email,u_pass).addOnCompleteListener{
 
             task ->
             if(task.isSuccessful)
             {
                 startActivity(Intent(this,MainActivity::class.java))
+                finish()
             }
             else
             {
                 Toast.makeText(applicationContext,"Sign Up failed",Toast.LENGTH_LONG).show()
             }
 
-        })
+        }
 
         
     }

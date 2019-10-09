@@ -44,7 +44,7 @@ class GalleryFragment : Fragment() {
         pass=root.findViewById(R.id.pass_id) as EditText
         signUpBtn=root.findViewById(R.id.adduser_id) as Button
 
-        signUpBtn.setOnClickListener(View.OnClickListener {
+        signUpBtn.setOnClickListener {
 
 
             var gvm=GalleryViewModel()
@@ -54,7 +54,7 @@ class GalleryFragment : Fragment() {
             gvm.validateemail.observe(this, Observer {
                     b->
                 if(!b) {
-                    email_id.setError("Email not in correct form")
+                    email_id.error = "Email not in correct form"
                     email_id.requestFocus()
                 }
 
@@ -67,7 +67,7 @@ class GalleryFragment : Fragment() {
             gvm.currentName.observe(this, Observer {
                    b->
                 if(!b) {
-                    pass_id.setError("Pass requirement not matched")
+                    pass_id.error = "Pass requirement not matched"
                     pass_id.requestFocus()
                 }
 
@@ -90,7 +90,7 @@ class GalleryFragment : Fragment() {
                     Toast.makeText(activity,"Sign Up failed",Toast.LENGTH_LONG).show()
                 }
             })
-        })
+        }
 
         return root
     }

@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
 
         sharedPref = SharedPreferenceManager(this)
 
-        if(sharedPref.getStatus())
+        if(sharedPref.getLoginStatus())
         {
             startActivity(Intent(applicationContext,DashBoard::class.java))
             finish()
@@ -60,6 +60,7 @@ class MainActivity : AppCompatActivity() {
         signUpBtn.setOnClickListener {
 
             startActivity(Intent(this,SignUp::class.java))
+            finish()
         }
 
         signinBtn.setOnClickListener(View.OnClickListener {
@@ -100,7 +101,8 @@ class MainActivity : AppCompatActivity() {
                 b -> Log.wtf("firebase", " "+b)
                 if(b==true)
                 {
-                    sharedPref.setStatus(true)
+                    sharedPref.setLoginStatus(true)
+                    sharedPref.setEmail(email.text.toString().trim())
                     startActivity(Intent(this,DashBoard::class.java))
                     finish()
 

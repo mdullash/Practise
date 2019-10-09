@@ -77,7 +77,7 @@ class DashBoard : AppCompatActivity() {
         if(item.itemId==R.id.signout_id)
         {
             auth.signOut()
-            sharePref.setStatus(false)
+            sharePref.setLoginStatus(false)
             finish()
             startActivity(Intent(this,MainActivity::class.java))
 

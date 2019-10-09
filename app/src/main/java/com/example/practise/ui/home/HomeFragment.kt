@@ -1,5 +1,6 @@
 package com.example.practise.ui.home
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.example.practise.DashBoard
 import com.example.practise.FirebaseInstance
 import com.example.practise.R
+import com.example.practise.SharedPreferenceManager
 import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment() {
@@ -21,6 +23,7 @@ class HomeFragment : Fragment() {
     lateinit var name : EditText
     lateinit var age : EditText
     lateinit var savebtn : Button
+    lateinit var sharedPref : SharedPreferenceManager
 
 
     override fun onCreateView(
@@ -35,6 +38,7 @@ class HomeFragment : Fragment() {
         homeViewModel.text.observe(this, Observer {
             //textView.text = it
         })
+        sharedPref = SharedPreferenceManager(context!!)
 
         //DashBoard.count+=1
 
@@ -55,11 +59,11 @@ class HomeFragment : Fragment() {
 
         var u_name: String = name_id.text.toString().trim()
         var u_age : String = age_id.text.toString().trim()
-
+        var email : String? = sharedPref.getEmail()
 
         val id = FirebaseInstance.ref.push().key.toString()
 
-        val user = User(u_name,u_age)
+        val user = User(u_name,u_age,email)
 
         FirebaseInstance.ref.child(id).setValue(user).addOnCompleteListener{
 
