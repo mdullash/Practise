@@ -29,16 +29,17 @@ class SignUp : AppCompatActivity() {
         signinBtn=findViewById(R.id.sign_btn) as Button
         signUpBtn=findViewById(R.id.sign_up) as Button
 
-        signUpBtn.setOnClickListener(View.OnClickListener {
+        signUpBtn.setOnClickListener {
 
             userReg()
 
 
-        })
+        }
 
         signinBtn.setOnClickListener {
 
             startActivity(Intent(this,MainActivity::class.java))
+            finish()
         }
     }
 
