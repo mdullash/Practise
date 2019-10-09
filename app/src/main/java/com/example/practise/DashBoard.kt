@@ -1,8 +1,10 @@
 package com.example.practise
 
+
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import androidx.navigation.findNavController
@@ -17,12 +19,22 @@ import androidx.appcompat.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.core.view.contains
 import com.google.firebase.auth.FirebaseAuth
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import kotlinx.android.synthetic.main.fragment_home.*
+
 
 class DashBoard : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     lateinit var auth : FirebaseAuth
+    private lateinit var sharePref : SharedPreferenceManager
+//    companion object {
+//         var count : Int=0
+//    }
+        // var fragment: Fragment?=null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,6 +44,7 @@ class DashBoard : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         auth= FirebaseAuth.getInstance()
+        sharePref = SharedPreferenceManager(this)
 
         val fab: FloatingActionButton = findViewById(R.id.fab)
         fab.setOnClickListener { view ->
@@ -64,8 +77,10 @@ class DashBoard : AppCompatActivity() {
         if(item.itemId==R.id.signout_id)
         {
             auth.signOut()
+            sharePref.setStatus(false)
             finish()
             startActivity(Intent(this,MainActivity::class.java))
+
         }
 
         if(item.itemId==R.id.whitecolor_id)
@@ -86,6 +101,38 @@ class DashBoard : AppCompatActivity() {
         }
 
         return super.onOptionsItemSelected(item)
+    }
+
+//    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+//
+//        if(keyCode==KeyEvent.KEYCODE_BACK) {
+//            return false
+//        }
+//        return super.onKeyDown(keyCode, event)
+//    }
+
+    override fun onBackPressed() {
+
+        if(findNavController(R.id.nav_host_fragment).currentDestination?.id==R.id.nav_home)
+        {
+            val intent = Intent(Intent.ACTION_MAIN)
+            intent.addCategory(Intent.CATEGORY_HOME)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(intent)
+        }
+
+        else
+        {
+            super.onBackPressed()
+          }
+
+//        val intent = Intent(Intent.ACTION_MAIN)
+//        intent.addCategory(Intent.CATEGORY_HOME)
+//        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+//        startActivity(intent)
+
+        //Fragment currentFragment = getActivity().getFragmentManager().findFragmentById(R.id.fragment_container);
+
     }
 
     override fun onSupportNavigateUp(): Boolean {

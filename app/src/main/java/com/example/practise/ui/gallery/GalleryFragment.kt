@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.example.practise.DashBoard
 import com.example.practise.FirebaseModel
 import com.example.practise.MainActivity
 import com.example.practise.R
@@ -36,6 +37,8 @@ class GalleryFragment : Fragment() {
         galleryViewModel =
             ViewModelProviders.of(this).get(GalleryViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_adduser, container, false)
+
+        //DashBoard.count+=1
 
         email= root.findViewById(R.id.email_id) as EditText
         pass=root.findViewById(R.id.pass_id) as EditText

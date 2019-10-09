@@ -41,6 +41,7 @@ class MyAdapter(private var users : ArrayList<User>) : RecyclerView.Adapter<MyAd
         val age = "Age: ${users[position].age}"
         holder.fname.text = name
         holder.fage.text = age
+
     }
 
 }

@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.example.practise.DashBoard
 import com.example.practise.FirebaseInstance
 import com.example.practise.R
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -35,7 +36,7 @@ class HomeFragment : Fragment() {
             //textView.text = it
         })
 
-
+        //DashBoard.count+=1
 
         name = root.findViewById(R.id.name_id)
         age = root.findViewById(R.id.age_id)

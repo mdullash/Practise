@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.practise.DashBoard
 import com.example.practise.FirebaseInstance
 import com.example.practise.R
 import com.example.practise.ui.home.User
@@ -40,6 +41,8 @@ class SendFragment : Fragment() {
         sendViewModel.text.observe(this, Observer {
             //textView.text = it
         })
+
+        //DashBoard.count+=1
 
         recyclerView=view.findViewById(R.id.recycle_view)
         recyclerView.layoutManager = LinearLayoutManager(activity,RecyclerView.VERTICAL,false)

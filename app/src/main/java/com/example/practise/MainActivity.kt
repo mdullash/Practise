@@ -24,29 +24,43 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var email : EditText
     lateinit var pass : EditText
-    lateinit var signinBtn : Button
-    lateinit var signUpBtn : Button
-    //lateinit var layout : DrawerLayout
+    private lateinit var signinBtn : Button
+    private lateinit var signUpBtn : Button
     lateinit var auth : FirebaseAuth
+    private lateinit var sharedPref : SharedPreferenceManager
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //setContentView(R.layout.activity_main)
+
+        sharedPref = SharedPreferenceManager(this)
+
+        if(sharedPref.getStatus())
+        {
+            startActivity(Intent(applicationContext,DashBoard::class.java))
+            finish()
+        }
+
+
+
         setContentView(R.layout.activity_main)
+
+
 
         auth= FirebaseAuth.getInstance()
 
-        email=findViewById(R.id.email_id) as EditText
-        pass=findViewById(R.id.pass_id) as EditText
-        signinBtn=findViewById(R.id.sign_btn) as Button
-        signUpBtn=findViewById(R.id.sign_up) as Button
-        //layout=findViewById(R.id.drawer_layout)
+        email=findViewById(R.id.email_id)
+        pass=findViewById(R.id.pass_id)
+        signinBtn=findViewById(R.id.sign_btn)
+        signUpBtn=findViewById(R.id.sign_up)
 
 
-        signUpBtn.setOnClickListener(View.OnClickListener {
+        signUpBtn.setOnClickListener {
 
             startActivity(Intent(this,SignUp::class.java))
-        })
+        }
 
         signinBtn.setOnClickListener(View.OnClickListener {
 
@@ -68,14 +82,16 @@ class MainActivity : AppCompatActivity() {
 
             if (pass.length()==0)
             {
-                pass_id.setError("Enter password")
+                pass_id.error = "Enter password"
                 pass_id.requestFocus()
                 return@OnClickListener
             }
-            if(pass.length()>0 && pass.length()<8)
+            if(pass.length()<8)
             {
-                pass_id.setError("Enter at least 8")
+                pass_id.error = "Enter at least 8"
             }
+
+
 
             var firebaseModel=FirebaseModel()
             firebaseModel.userLogin(email.text.toString().trim(),pass.text.toString().trim())
@@ -84,7 +100,9 @@ class MainActivity : AppCompatActivity() {
                 b -> Log.wtf("firebase", " "+b)
                 if(b==true)
                 {
+                    sharedPref.setStatus(true)
                     startActivity(Intent(this,DashBoard::class.java))
+                    finish()
 
                 }
                 else if(b==false)

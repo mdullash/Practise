@@ -1,16 +1,14 @@
 package com.example.practise
 
-import android.content.Context
-import android.content.Intent
-import android.widget.Toast
-import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.MutableLiveData
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 
 class FirebaseModel
 {
-    //var isloginSuccessful=false
+
+    lateinit var auth : FirebaseAuth
+
     val currentName: MutableLiveData<Boolean> by lazy {
         MutableLiveData<Boolean>()
     }
@@ -18,10 +16,9 @@ class FirebaseModel
         MutableLiveData<Boolean>()
     }
 
-    //val obj=MainActivity()
     fun userLogin(email : String,pass : String) {
 
-        var auth : FirebaseAuth
+        //var auth : FirebaseAuth
 
         auth= FirebaseAuth.getInstance()
 
@@ -35,7 +32,7 @@ class FirebaseModel
 
     fun userReg(emial : String, pass : String)
     {
-        var auth : FirebaseAuth
+        //var auth : FirebaseAuth
 
         auth= FirebaseAuth.getInstance()
 
