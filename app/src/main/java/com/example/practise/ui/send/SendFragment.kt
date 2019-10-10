@@ -10,7 +10,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.practise.DashBoard
 import com.example.practise.FirebaseInstance
 import com.example.practise.R
 import com.example.practise.ui.home.User
@@ -20,7 +19,6 @@ class SendFragment : Fragment() {
 
     private lateinit var sendViewModel: SendViewModel
     private lateinit var recyclerView: RecyclerView
-    private lateinit var ref: DatabaseReference
     private var users : ArrayList<User> = ArrayList()
     private lateinit var adapter : MyAdapter
 
@@ -67,6 +65,7 @@ class SendFragment : Fragment() {
 
             adapter.update(users)
         }
+
 
         override fun onCancelled(databaseError: DatabaseError) {
 

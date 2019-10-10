@@ -12,10 +12,10 @@ import com.google.firebase.auth.FirebaseAuth
 
 class SignUp : AppCompatActivity() {
 
-    lateinit var email : EditText
-    lateinit var pass : EditText
-    lateinit var signinBtn : Button
-    lateinit var signUpBtn : Button
+    private lateinit var email : EditText
+    private lateinit var pass : EditText
+    private lateinit var signinBtn : Button
+    private lateinit var signUpBtn : Button
     private lateinit var auth : FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,10 +24,10 @@ class SignUp : AppCompatActivity() {
 
         auth= FirebaseAuth.getInstance()
 
-        email=findViewById(R.id.email_id) as EditText
-        pass=findViewById(R.id.pass_id) as EditText
-        signinBtn=findViewById(R.id.sign_btn) as Button
-        signUpBtn=findViewById(R.id.sign_up) as Button
+        email=findViewById(R.id.email_id)
+        pass=findViewById(R.id.pass_id)
+        signinBtn=findViewById(R.id.sign_btn)
+        signUpBtn=findViewById(R.id.sign_up)
 
         signUpBtn.setOnClickListener {
 

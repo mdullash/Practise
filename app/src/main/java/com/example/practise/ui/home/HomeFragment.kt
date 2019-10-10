@@ -1,7 +1,8 @@
 package com.example.practise.ui.home
 
-import android.content.Context
 import android.os.Bundle
+import android.util.Log
+import android.util.Log.*
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +12,6 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import com.example.practise.DashBoard
 import com.example.practise.FirebaseInstance
 import com.example.practise.R
 import com.example.practise.SharedPreferenceManager
@@ -59,9 +59,11 @@ class HomeFragment : Fragment() {
 
         var u_name: String = name_id.text.toString().trim()
         var u_age : String = age_id.text.toString().trim()
-        var email : String? = sharedPref.getEmail()
+        val email : String? = sharedPref.getEmail()
 
         val id = FirebaseInstance.ref.push().key.toString()
+
+        //wtf("id","$id")
 
         val user = User(u_name,u_age,email)
 

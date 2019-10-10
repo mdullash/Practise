@@ -9,13 +9,22 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.practise.R
 import com.example.practise.ui.home.User
 
-class MyAdapter(private var users : ArrayList<User>) : RecyclerView.Adapter<MyAdapter.ViewHolder>()
+class MyAdapter(private var users : ArrayList<User>) : RecyclerView.Adapter<RecyclerView.ViewHolder>()
 {
+    var TYPE_HEADER = 0
+    var TYPE_ITEM = 1
+
     class ViewHolder(itemview : View) : RecyclerView.ViewHolder(itemview)
     {
         var fname : TextView = itemview.findViewById((R.id.name))
         var fage : TextView = itemview.findViewById((R.id.age))
     }
+
+    class HeaderViewholder(itemview : View) : RecyclerView.ViewHolder(itemview)
+    {
+        var addedBy : TextView = itemview.findViewById(R.id.recycle_header)
+    }
+
 
     fun update(users : ArrayList<User>)
     {
@@ -23,11 +32,20 @@ class MyAdapter(private var users : ArrayList<User>) : RecyclerView.Adapter<MyAd
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder
     {
-        val view : View = LayoutInflater.from(parent.context).inflate(R.layout.user_info,parent,false)
-        Log.wtf("onCreateViewHolder ", " edfasdfa")
-        return ViewHolder(view)
+//        val view : View = LayoutInflater.from(parent.context).inflate(R.layout.user_info,parent,false)
+//        return ViewHolder(view)
+        return if(viewType == TYPE_HEADER) {
+            val view : View = LayoutInflater.from(parent.context).inflate(R.layout.recyclerview_header,parent,false)
+
+            HeaderViewholder(view)
+        } else {
+            val view : View = LayoutInflater.from(parent.context).inflate(R.layout.user_info,parent,false)
+
+            ViewHolder(view)
+
+        }
     }
 
     override fun getItemCount(): Int {
@@ -36,11 +54,31 @@ class MyAdapter(private var users : ArrayList<User>) : RecyclerView.Adapter<MyAd
         return users.size
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val name = "Name: ${users[position].name}"
-        val age = "Age: ${users[position].age}"
-        holder.fname.text = name
-        holder.fage.text = age
+    override fun getItemViewType(position: Int): Int {
+
+        return if(position==0) {
+            TYPE_HEADER
+        } else {
+            TYPE_ITEM
+        }
+    }
+
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+
+        if (holder is ViewHolder)
+        {
+            val name = "Name: ${users[position].name}"
+            val age = "Age: ${users[position].age}"
+
+            holder.fname.text = name
+            holder.fage.text = age
+        }
+        else if(holder is HeaderViewholder)
+        {
+            val addedBy = "Age: ${users[position].addedBy}"
+            holder.addedBy.text = addedBy
+        }
+
 
     }
 
