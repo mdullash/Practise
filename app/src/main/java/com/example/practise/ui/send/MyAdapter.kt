@@ -7,9 +7,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.practise.R
+import com.example.practise.ui.home.Data
+import com.example.practise.ui.home.Header
 import com.example.practise.ui.home.User
 
-class MyAdapter(private var users : ArrayList<User>) : RecyclerView.Adapter<RecyclerView.ViewHolder>()
+class MyAdapter(private var users : ArrayList<Data>) : RecyclerView.Adapter<RecyclerView.ViewHolder>()
 {
     var TYPE_HEADER = 0
     var TYPE_ITEM = 1
@@ -26,16 +28,16 @@ class MyAdapter(private var users : ArrayList<User>) : RecyclerView.Adapter<Recy
     }
 
 
-    fun update(users : ArrayList<User>)
+    fun update(users : ArrayList<Data>)
     {
         this.users = users
         notifyDataSetChanged()
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder
     {
-//        val view : View = LayoutInflater.from(parent.context).inflate(R.layout.user_info,parent,false)
-//        return ViewHolder(view)
+
         return if(viewType == TYPE_HEADER) {
             val view : View = LayoutInflater.from(parent.context).inflate(R.layout.recyclerview_header,parent,false)
 
@@ -49,34 +51,44 @@ class MyAdapter(private var users : ArrayList<User>) : RecyclerView.Adapter<Recy
     }
 
     override fun getItemCount(): Int {
-        Log.wtf("onCreateViewHolder ", " users.size "+users.size)
+        //Log.wtf("onCreateViewHolder ", " users.size "+users.size)
 
         return users.size
     }
 
     override fun getItemViewType(position: Int): Int {
 
-        return if(position==0) {
-            TYPE_HEADER
-        } else {
+        return if(users[position] is User)
+        {
             TYPE_ITEM
         }
+        else
+        {
+            TYPE_HEADER
+        }
+//        return if(position==0) {
+//            TYPE_HEADER
+//        } else {
+//            TYPE_ITEM
+//        }
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
         if (holder is ViewHolder)
         {
-            val name = "Name: ${users[position].name}"
-            val age = "Age: ${users[position].age}"
+            val name = "Name: ${(users[position] as User).name}"
+            val age = "Age: ${(users[position] as User).age}"
 
             holder.fname.text = name
             holder.fage.text = age
         }
         else if(holder is HeaderViewholder)
         {
-            val addedBy = "Age: ${users[position].addedBy}"
-            holder.addedBy.text = addedBy
+
+            val addedBy = "${(users[position] as Header).addedBy}"
+
+                holder.addedBy.text = addedBy
         }
 
 

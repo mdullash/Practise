@@ -1,4 +1,7 @@
 package com.example.practise.ui.home
 
-class User(var name: String = "", var age: String = "",var addedBy : String? = "")
+open class User(var name: String = "", var age: String = "", var addedBy : String? = "") : Data
+
+
+
 
