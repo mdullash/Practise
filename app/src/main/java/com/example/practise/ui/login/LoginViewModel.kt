@@ -1,13 +1,13 @@
-package com.example.practise.ui.adduser
+package com.example.practise.ui.login
 
 import android.text.TextUtils
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import java.util.regex.Pattern
 
-class AdduserViewModel : ViewModel() {
+class LoginViewModel : ViewModel(){
 
-    val currentName: MutableLiveData<Boolean> by lazy {
+    val validatepass: MutableLiveData<Boolean> by lazy {
         MutableLiveData<Boolean>()
     }
 
@@ -27,6 +27,6 @@ class AdduserViewModel : ViewModel() {
     {
         val PASSWORD_PATTERN = Pattern.compile("^(?=.*[A-Z])(?=.*[@_.]).*$")
 
-            currentName.value=!TextUtils.isEmpty(pass) && PASSWORD_PATTERN.matcher(pass).matches()
+        validatepass.value=!TextUtils.isEmpty(pass) && PASSWORD_PATTERN.matcher(pass).matches()
     }
 }

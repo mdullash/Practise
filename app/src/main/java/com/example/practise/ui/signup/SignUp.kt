@@ -33,7 +33,6 @@ class SignUp : AppCompatActivity() {
 
             userReg()
 
-
         }
 
         signinBtn.setOnClickListener {

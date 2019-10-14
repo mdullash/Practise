@@ -47,7 +47,7 @@ class AdduserFragment : Fragment() {
 
             adduserViewModel.validateEmail(email.text.toString().trim())
 
-            adduserViewModel.validateemail.observe(this, Observer {
+            adduserViewModel.validatemail.observe(this, Observer {
                     b->
                         if(!b) {
                             email_id.error = "Email not in correct form"
@@ -75,15 +75,15 @@ class AdduserFragment : Fragment() {
             firebaseModel.currentReg.observe(this, Observer {
 
                 task->
-                if(task)
-                {
-                    startActivity(Intent(activity, LoginActivity::class.java))
-                }
+                    if(task)
+                    {
+                        startActivity(Intent(activity, LoginActivity::class.java))
+                    }
 
-                else
-                {
-                    Toast.makeText(activity,"Sign Up failed",Toast.LENGTH_LONG).show()
-                }
+                    else
+                    {
+                        Toast.makeText(activity,"Sign Up failed",Toast.LENGTH_LONG).show()
+                    }
             })
         }
 
