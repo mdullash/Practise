@@ -1,6 +1,7 @@
 package com.example.practise.ui.showinfo
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,13 +18,13 @@ import com.example.practise.model.User
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
+import kotlinx.android.synthetic.main.activity_sign_up.*
 
 class ShowinfoFragment : Fragment() {
 
     private lateinit var showinfoViewModel: ShowinfoViewModel
     private lateinit var recyclerView: RecyclerView
     private var users : ArrayList<Data> = ArrayList()
-    private var emails : ArrayList<String> = ArrayList()
     private lateinit var adapter : MyAdapter
 
     override fun onCreateView(
@@ -37,67 +38,24 @@ class ShowinfoFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        showinfoViewModel =
-            ViewModelProviders.of(this).get(ShowinfoViewModel::class.java)
-        //val textView: TextView = root.findViewById(R.id.text_send)
-        showinfoViewModel.text.observe(this, Observer {
-            //textView.text = it
-        })
+        showinfoViewModel = ViewModelProviders.of(this).get(ShowinfoViewModel::class.java)
 
+        showinfoViewModel = ShowinfoViewModel()
         recyclerView=view.findViewById(R.id.recycle_view)
         recyclerView.layoutManager = LinearLayoutManager(activity,RecyclerView.VERTICAL,false)
+
+        showinfoViewModel.data.observe(this, Observer {
+                data->
+                 users.addAll(data)
+                 adapter.update(users)
+
+        })
+
         adapter=MyAdapter(users)
+        showinfoViewModel.fetchData()
         recyclerView.adapter = adapter
 
-        fetchData()
+
     }
-
-    fun fetchData()
-    {
-        FirebaseInstance.ref.orderByChild("addedBy").addValueEventListener(valueEventListener)
-
-//        users.add(Header("abc@gmail.com"))
-//        users.add(User("a","22","abc@gmail.com"))
-//        adapter.update(users)
-    }
-
-    private var valueEventListener = object : ValueEventListener {
-        override fun onDataChange(dataSnapshot: DataSnapshot) {
-            //Log.i("onCreateViewHolder ", "dataSnapshot: $dataSnapshot")
-            dataSnapshot.children.forEach { data ->
-
-                val user: Data? = data.getValue(Header::class.java)
-
-                if(emails.isEmpty()) {
-                      users.add(user!!)
-                      emails.add((user as Header).addedBy!!)
-
-                  }
-
-                else {
-
-                      if (!emails.contains((user as Header).addedBy)) {
-                              users.add(user)
-                              emails.add(user.addedBy!!)
-                      }
-
-                  }
-
-                val user2: Data? = data.getValue(User::class.java)
-                users.add(user2!!)
-
-                }
-
-            adapter.update(users)
-
-        }
-
-
-        override fun onCancelled(databaseError: DatabaseError) {
-
-        }
-    }
-
-
 
 }

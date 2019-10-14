@@ -65,11 +65,7 @@ class MyAdapter(private var users : ArrayList<Data>) : RecyclerView.Adapter<Recy
         {
             TYPE_HEADER
         }
-//        return if(position==0) {
-//            TYPE_HEADER
-//        } else {
-//            TYPE_ITEM
-//        }
+
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
