@@ -46,19 +46,14 @@ class ShowinfoViewModel : ViewModel() {
 
                   }
 
-
-
                 val userdata: Data? = data.getValue(User::class.java)
                 datas.add(userdata!!)
-
-
 
             }
             data.value = datas
 
 
         }
-
 
         override fun onCancelled(databaseError: DatabaseError) {
 

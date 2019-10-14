@@ -27,12 +27,12 @@ class MyAdapter(private var users : ArrayList<Data>) : RecyclerView.Adapter<Recy
     }
 
 
-    fun update(users : ArrayList<Data>)
-    {
-        this.users = users
-        notifyDataSetChanged()
-
-    }
+//    fun update(users : ArrayList<Data>)
+//    {
+//        this.users = users
+//        notifyDataSetChanged()
+//
+//    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder
     {

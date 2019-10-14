@@ -24,17 +24,25 @@
 
     <Button
         android:id="@+id/sign_up"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="Sign Up" />
 
-    <Button
-        android:id="@+id/sign_btn"
+    <TextView
+        android:id="@+id/signin_txtv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Login" />
+        android:text="Already registered? Sign In"
+        />
 
+    <ProgressBar
+        android:id="@+id/signup_progressbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minHeight="50dp"
+        android:minWidth="50dp"
+        android:layout_gravity="center"/>
 
 </LinearLayout>

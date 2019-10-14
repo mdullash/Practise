@@ -22,12 +22,10 @@
 
     <Button
         android:id="@+id/adduser_id"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="30px"
-        android:background="#252522"
-        android:textColor="@color/cardview_light_background"
         android:textSize="40px"
         android:text="Add User" />
 
