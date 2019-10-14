@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:id="@+id/home_fragment"
     android:layout_height="match_parent">
 
     <EditText
@@ -13,19 +12,19 @@
         android:hint="Enter Name"
 
         />
+
     <EditText
         android:id="@+id/age_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter Age"
-        />
+        android:hint="Enter Age" />
+
     <Button
         android:id="@+id/save_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Save data"
-        android:layout_gravity="center"
-        />
+        android:layout_gravity="center" />
 
 
 </LinearLayout>

@@ -3,43 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@+id/nav_addinfo">
 
     <fragment
-        android:id="@+id/nav_home"
-        android:name="com.example.practise.ui.home.HomeFragment"
+        android:id="@+id/nav_addinfo"
+        android:name="com.example.practise.ui.addinfo.AddinfoFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_addinfo" />
 
     <fragment
         android:id="@+id/nav_adduser"
-        android:name="com.example.practise.ui.gallery.GalleryFragment"
+        android:name="com.example.practise.ui.adduser.AdduserFragment"
         android:label="@string/menu_adduser"
         tools:layout="@layout/fragment_adduser" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.practise.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
-
-    <fragment
-        android:id="@+id/nav_tools"
-        android:name="com.example.practise.ui.tools.ToolsFragment"
-        android:label="@string/menu_tools"
-        tools:layout="@layout/fragment_tools" />
-
-    <fragment
-        android:id="@+id/nav_share"
-        android:name="com.example.practise.ui.share.ShareFragment"
-        android:label="@string/menu_share"
-        tools:layout="@layout/fragment_share" />
-
-    <fragment
-        android:id="@+id/nav_send"
-        android:name="com.example.practise.ui.send.SendFragment"
+        android:id="@+id/nav_showinfo"
+        android:name="com.example.practise.ui.showinfo.ShowinfoFragment"
         android:label="@string/menu_send"
-        tools:layout="@layout/fragment_send"
+        tools:layout="@layout/fragment_showinfo"
         app:headerLayout="@layout/recyclerview_header"
         />
 </navigation>

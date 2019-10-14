@@ -1,26 +1,22 @@
-package com.example.practise
+package com.example.practise.ui.login
 
 import android.content.Intent
-import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Layout
-import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.Observer
-import com.google.android.gms.tasks.OnCompleteListener
+import com.example.practise.R
+import com.example.practise.helper.SharedPreferenceManager
+import com.example.practise.model.FirebaseModel
+import com.example.practise.ui.dashboard.DashBoard
+import com.example.practise.ui.signup.SignUp
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.android.synthetic.main.activity_dash_board.*
 import kotlinx.android.synthetic.main.activity_sign_up.*
-import java.util.regex.Pattern
-import kotlinx.android.synthetic.main.activity_dash_board.drawer_layout as drawer_layout1
 
-class MainActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity() {
 
     private lateinit var email : EditText
     private lateinit var pass : EditText
@@ -33,21 +29,17 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //setContentView(R.layout.activity_main)
 
         sharedPref = SharedPreferenceManager(this)
 
         if(sharedPref.getLoginStatus())
         {
-            startActivity(Intent(applicationContext,DashBoard::class.java))
+            startActivity(Intent(applicationContext, DashBoard::class.java))
             finish()
         }
 
 
-
-        setContentView(R.layout.activity_main)
-
-
+        setContentView(R.layout.activity_login)
 
         auth= FirebaseAuth.getInstance()
 
@@ -59,7 +51,7 @@ class MainActivity : AppCompatActivity() {
 
         signUpBtn.setOnClickListener {
 
-            startActivity(Intent(this,SignUp::class.java))
+            startActivity(Intent(this, SignUp::class.java))
             finish()
         }
 
@@ -94,16 +86,16 @@ class MainActivity : AppCompatActivity() {
 
 
 
-            var firebaseModel=FirebaseModel()
+            var firebaseModel= FirebaseModel()
             firebaseModel.userLogin(email.text.toString().trim(),pass.text.toString().trim())
 
             firebaseModel.currentName.observe(this, Observer {
-                b -> Log.wtf("firebase", " "+b)
+                b ->
                 if(b==true)
                 {
                     sharedPref.setLoginStatus(true)
                     sharedPref.setEmail(email.text.toString().trim())
-                    startActivity(Intent(this,DashBoard::class.java))
+                    startActivity(Intent(this, DashBoard::class.java))
                     finish()
 
                 }

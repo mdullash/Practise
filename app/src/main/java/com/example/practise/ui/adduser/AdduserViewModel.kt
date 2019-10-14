@@ -1,14 +1,11 @@
-package com.example.practise.ui.gallery
+package com.example.practise.ui.adduser
 
 import android.text.TextUtils
-import android.widget.EditText
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import java.util.regex.Pattern
 
-class GalleryViewModel : ViewModel() {
+class AdduserViewModel : ViewModel() {
 
     val currentName: MutableLiveData<Boolean> by lazy {
         MutableLiveData<Boolean>()

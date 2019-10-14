@@ -1,4 +1,4 @@
-package com.example.practise
+package com.example.practise.model
 
 import androidx.lifecycle.MutableLiveData
 import com.google.android.gms.tasks.OnCompleteListener
@@ -18,7 +18,6 @@ class FirebaseModel
 
     fun userLogin(email : String,pass : String) {
 
-        //var auth : FirebaseAuth
 
         auth= FirebaseAuth.getInstance()
 
@@ -32,11 +31,10 @@ class FirebaseModel
 
     fun userReg(emial : String, pass : String)
     {
-        //var auth : FirebaseAuth
 
         auth= FirebaseAuth.getInstance()
 
-        auth.createUserWithEmailAndPassword(emial,pass).addOnCompleteListener(OnCompleteListener {
+        auth.createUserWithEmailAndPassword(emial,pass).addOnCompleteListener{
 
             task ->
             if(task.isSuccessful)
@@ -45,6 +43,6 @@ class FirebaseModel
             }
 
 
-        })
+        }
     }
 }

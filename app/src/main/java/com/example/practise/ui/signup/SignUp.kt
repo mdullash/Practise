@@ -1,13 +1,13 @@
-package com.example.practise
+package com.example.practise.ui.signup
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import com.google.android.gms.tasks.OnCompleteListener
+import com.example.practise.ui.login.LoginActivity
+import com.example.practise.R
 import com.google.firebase.auth.FirebaseAuth
 
 class SignUp : AppCompatActivity() {
@@ -38,22 +38,22 @@ class SignUp : AppCompatActivity() {
 
         signinBtn.setOnClickListener {
 
-            startActivity(Intent(this,MainActivity::class.java))
+            startActivity(Intent(this, LoginActivity::class.java))
             finish()
         }
     }
 
     private fun userReg() {
 
-        var u_email : String = email.text.toString()
-        var u_pass : String = pass.text.toString()
+        var uemail : String = email.text.toString()
+        var upass : String = pass.text.toString()
 
-        auth.createUserWithEmailAndPassword(u_email,u_pass).addOnCompleteListener{
+        auth.createUserWithEmailAndPassword(uemail,upass).addOnCompleteListener{
 
             task ->
             if(task.isSuccessful)
             {
-                startActivity(Intent(this,MainActivity::class.java))
+                startActivity(Intent(this, LoginActivity::class.java))
                 finish()
             }
             else

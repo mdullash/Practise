@@ -1,8 +1,6 @@
-package com.example.practise.ui.home
+package com.example.practise.ui.addinfo
 
 import android.os.Bundle
-import android.util.Log
-import android.util.Log.*
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,18 +10,19 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import com.example.practise.FirebaseInstance
 import com.example.practise.R
-import com.example.practise.SharedPreferenceManager
-import kotlinx.android.synthetic.main.fragment_home.*
+import com.example.practise.helper.FirebaseInstance
+import com.example.practise.helper.SharedPreferenceManager
+import com.example.practise.model.User
+import kotlinx.android.synthetic.main.fragment_addinfo.*
 
-class HomeFragment : Fragment() {
+class AddinfoFragment : Fragment() {
 
-    private lateinit var homeViewModel: HomeViewModel
-    lateinit var name : EditText
-    lateinit var age : EditText
-    lateinit var savebtn : Button
-    lateinit var sharedPref : SharedPreferenceManager
+    private lateinit var addinfoViewModel: AddinfoViewModel
+    private lateinit var name : EditText
+    private lateinit var age : EditText
+    private lateinit var savebtn : Button
+    private lateinit var sharedPref : SharedPreferenceManager
 
 
     override fun onCreateView(
@@ -31,16 +30,14 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        homeViewModel =
-            ViewModelProviders.of(this).get(HomeViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_home, container, false)
+        addinfoViewModel =
+            ViewModelProviders.of(this).get(AddinfoViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_addinfo, container, false)
         //val textView: TextView = root.findViewById(R.id.text_home)
-        homeViewModel.text.observe(this, Observer {
+        addinfoViewModel.text.observe(this, Observer {
             //textView.text = it
         })
         sharedPref = SharedPreferenceManager(context!!)
-
-        //DashBoard.count+=1
 
         name = root.findViewById(R.id.name_id)
         age = root.findViewById(R.id.age_id)
@@ -57,22 +54,18 @@ class HomeFragment : Fragment() {
 
     private fun saveData() {
 
-        var u_name: String = name_id.text.toString().trim()
-        var u_age : String = age_id.text.toString().trim()
+        var uname: String = name_id.text.toString().trim()
+        var uage : String = age_id.text.toString().trim()
         val email : String? = sharedPref.getEmail()
 
         val id = FirebaseInstance.ref.push().key.toString()
 
-        //wtf("id","$id")
-
-        val user = User(u_name,u_age,email)
+        val user = User(uname, uage, email)
 
         FirebaseInstance.ref.child(id).setValue(user).addOnCompleteListener{
 
             Toast.makeText(context,"Saved",Toast.LENGTH_LONG).show()
         }
     }
-
-
 
 }

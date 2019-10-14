@@ -1,40 +1,34 @@
-package com.example.practise
+package com.example.practise.ui.dashboard
 
 
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
+import android.view.Menu
+import android.view.MenuItem
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import androidx.drawerlayout.widget.DrawerLayout
+import com.example.practise.ui.login.LoginActivity
+import com.example.practise.R
+import com.example.practise.helper.SharedPreferenceManager
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
-import android.view.Menu
-import android.view.MenuItem
-import android.widget.Toast
-import androidx.core.view.contains
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import kotlinx.android.synthetic.main.fragment_home.*
 
 
 class DashBoard : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
-    lateinit var auth : FirebaseAuth
+    private lateinit var auth : FirebaseAuth
     private lateinit var sharePref : SharedPreferenceManager
-//    companion object {
-//         var count : Int=0
-//    }
-        // var fragment: Fragment?=null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,12 +48,12 @@ class DashBoard : AppCompatActivity() {
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)
         val navController = findNavController(R.id.nav_host_fragment)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
+
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home, R.id.nav_adduser, R.id.nav_slideshow,
-                R.id.nav_tools, R.id.nav_share, R.id.nav_send
+                R.id.nav_addinfo,
+                R.id.nav_adduser,
+                R.id.nav_showinfo
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -74,28 +68,28 @@ class DashBoard : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
-        if(item.itemId==R.id.signout_id)
+        if(item.itemId== R.id.signout_id)
         {
             auth.signOut()
             sharePref.setLoginStatus(false)
             finish()
-            startActivity(Intent(this,MainActivity::class.java))
+            startActivity(Intent(this, LoginActivity::class.java))
 
         }
 
-        if(item.itemId==R.id.whitecolor_id)
+        if(item.itemId== R.id.whitecolor_id)
         {
             val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
             drawerLayout.setBackgroundColor(Color.WHITE)
         }
 
-        if(item.itemId==R.id.graycolor_id)
+        if(item.itemId== R.id.graycolor_id)
         {
             val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
             drawerLayout.setBackgroundColor(Color.GRAY)
         }
 
-        if(item.itemId==R.id.nav_adduser)
+        if(item.itemId== R.id.nav_adduser)
         {
             Toast.makeText(applicationContext,"Selected",Toast.LENGTH_LONG).show()
         }
@@ -103,17 +97,10 @@ class DashBoard : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-//    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
-//
-//        if(keyCode==KeyEvent.KEYCODE_BACK) {
-//            return false
-//        }
-//        return super.onKeyDown(keyCode, event)
-//    }
 
     override fun onBackPressed() {
 
-        if(findNavController(R.id.nav_host_fragment).currentDestination?.id==R.id.nav_home)
+        if(findNavController(R.id.nav_host_fragment).currentDestination?.id== R.id.nav_addinfo)
         {
             val intent = Intent(Intent.ACTION_MAIN)
             intent.addCategory(Intent.CATEGORY_HOME)
@@ -125,13 +112,6 @@ class DashBoard : AppCompatActivity() {
         {
             super.onBackPressed()
           }
-
-//        val intent = Intent(Intent.ACTION_MAIN)
-//        intent.addCategory(Intent.CATEGORY_HOME)
-//        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-//        startActivity(intent)
-
-        //Fragment currentFragment = getActivity().getFragmentManager().findFragmentById(R.id.fragment_container);
 
     }
 

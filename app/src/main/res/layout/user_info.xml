@@ -13,31 +13,29 @@
         android:paddingTop="30px"
 
         >
-    <TextView
-        android:id="@+id/name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:layout_marginLeft="30px"
-        />
 
-    <TextView
-        android:id="@+id/age"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:layout_marginLeft="30px"
-        />
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_marginLeft="30px" />
 
-<!--        <TextView-->
-<!--            android:id="@+id/addedBy"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:textSize="20sp"-->
-<!--            android:layout_marginLeft="30px"/>-->
+        <TextView
+            android:id="@+id/age"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_marginLeft="30px" />
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/addedBy"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:textSize="20sp"-->
+        <!--            android:layout_marginLeft="30px"/>-->
 
     </LinearLayout>
-
 
 
 </LinearLayout>

@@ -1,15 +1,14 @@
-package com.example.practise.ui.send
+package com.example.practise.ui.showinfo
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.practise.R
-import com.example.practise.ui.home.Data
-import com.example.practise.ui.home.Header
-import com.example.practise.ui.home.User
+import com.example.practise.model.Data
+import com.example.practise.model.Header
+import com.example.practise.model.User
 
 class MyAdapter(private var users : ArrayList<Data>) : RecyclerView.Adapter<RecyclerView.ViewHolder>()
 {
